@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>Ajustar stock</h2>
+
+<form [formGroup]="form" (ngSubmit)="aplicar()" novalidate>
+  <mat-dialog-content class="ajuste-stock-dialog__contenido">
+    <p class="ajuste-stock-dialog__resumen">{{ producto.nombre }} · Stock actual: {{ producto.stock }}</p>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Tipo de movimiento</mat-label>
+      <mat-select formControlName="tipo">
+        <mat-option value="ENTRADA">Entrada</mat-option>
+        <mat-option value="SALIDA">Salida</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Cantidad</mat-label>
+      <input matInput type="number" min="1" formControlName="cantidad" />
+      <mat-error>Ingresa una cantidad entera mayor que cero.</mat-error>
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" mat-dialog-close>Cancelar</button>
+    <button mat-flat-button type="submit">Aplicar</button>
+  </mat-dialog-actions>
+</form>

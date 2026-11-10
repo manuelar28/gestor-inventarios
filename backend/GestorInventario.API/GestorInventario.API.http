@@ -1,0 +1,38 @@
+@baseUrl = http://localhost:5000
+
+GET {{baseUrl}}/api/productos
+###
+GET {{baseUrl}}/api/productos/stock-bajo
+###
+GET {{baseUrl}}/api/categorias
+###
+POST {{baseUrl}}/api/productos
+Content-Type: application/json
+
+{
+  "nombre": "Teclado inalámbrico",
+  "descripcion": "Teclado USB",
+  "precio": 85000,
+  "stock": 3,
+  "stockMinimo": 5,
+  "categoriaId": 1
+}
+###
+PUT {{baseUrl}}/api/productos/1
+Content-Type: application/json
+
+{
+  "nombre": "Mouse inalámbrico",
+  "descripcion": "Mouse óptico USB",
+  "precio": 47000,
+  "stock": 12,
+  "stockMinimo": 5,
+  "categoriaId": 1
+}
+###
+PATCH {{baseUrl}}/api/productos/1/stock
+Content-Type: application/json
+
+{ "cantidad": 2, "tipo": "ENTRADA" }
+###
+DELETE {{baseUrl}}/api/productos/1

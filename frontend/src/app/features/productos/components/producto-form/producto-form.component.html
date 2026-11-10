@@ -1,0 +1,61 @@
+<section class="producto-form">
+  <header class="producto-form__encabezado">
+    <h1 class="producto-form__titulo">{{ titulo() }}</h1>
+  </header>
+
+  <form class="producto-form__formulario" [formGroup]="form" (ngSubmit)="guardar()" novalidate>
+    <mat-form-field class="producto-form__campo producto-form__campo--completo" appearance="outline">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre" maxlength="150" />
+      @if (form.controls.nombre.hasError('required')) {
+        <mat-error>El nombre es obligatorio.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="producto-form__campo producto-form__campo--completo" appearance="outline">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput rows="3" formControlName="descripcion" maxlength="500"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="producto-form__campo" appearance="outline">
+      <mat-label>Precio</mat-label>
+      <input matInput type="number" min="0" step="0.01" formControlName="precio" />
+      @if (form.controls.precio.hasError('required') || form.controls.precio.hasError('min')) {
+        <mat-error>El precio debe ser mayor que cero.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="producto-form__campo" appearance="outline">
+      <mat-label>Categoría</mat-label>
+      <mat-select formControlName="categoriaId">
+        @for (categoria of store.categorias(); track categoria.id) {
+          <mat-option [value]="categoria.id">{{ categoria.nombre }}</mat-option>
+        }
+      </mat-select>
+      @if (form.controls.categoriaId.hasError('required')) {
+        <mat-error>Selecciona una categoría.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="producto-form__campo" appearance="outline">
+      <mat-label>Stock actual</mat-label>
+      <input matInput type="number" min="0" formControlName="stock" />
+      @if (form.controls.stock.invalid) {
+        <mat-error>El stock no puede ser negativo.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="producto-form__campo" appearance="outline">
+      <mat-label>Stock mínimo</mat-label>
+      <input matInput type="number" min="0" formControlName="stockMinimo" />
+      @if (form.controls.stockMinimo.invalid) {
+        <mat-error>El stock mínimo no puede ser negativo.</mat-error>
+      }
+    </mat-form-field>
+
+    <footer class="producto-form__acciones">
+      <a mat-button routerLink="/productos">Cancelar</a>
+      <button mat-flat-button type="submit" [disabled]="guardando()">{{ textoGuardar() }}</button>
+    </footer>
+  </form>
+</section>

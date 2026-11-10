@@ -1,0 +1,26 @@
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
+
+  &__marca {
+    color: inherit;
+    font: var(--mat-sys-title-large);
+    text-decoration: none;
+  }
+
+  &__descripcion {
+    margin: 0;
+    font: var(--mat-sys-body-medium);
+  }
+}
+
+.app-main {
+  max-width: 1200px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+}

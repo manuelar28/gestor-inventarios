@@ -1,0 +1,12 @@
+.ajuste-stock-dialog {
+  &__contenido {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  &__resumen {
+    margin: 0 0 0.75rem;
+    color: var(--mat-sys-on-surface-variant);
+  }
+}
